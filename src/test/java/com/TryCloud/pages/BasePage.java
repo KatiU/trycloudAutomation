@@ -8,7 +8,7 @@ import java.io.IOException;
 import static com.TryCloud.utilities.ConfigurationReader.getProperty;
 import static com.TryCloud.utilities.Driver.getDriver;
 
-public class BasePage {
+public abstract class BasePage {
 
     public BasePage() {
         PageFactory.initElements(Driver.getDriver(), this);
