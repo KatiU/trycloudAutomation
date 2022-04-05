@@ -1,6 +1,11 @@
 package com.TryCloud.pages;
+import com.TryCloud.utilities.BrowserUtils;
+import com.TryCloud.utilities.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class LandingPage extends BasePage {
@@ -24,6 +29,27 @@ public class LandingPage extends BasePage {
 
     @FindBy(xpath = "//*[@id=\"appmenu\"]/li[@tabindex='-1']/a")
     public List<WebElement> landingPageModules;
+
+    @FindBy(xpath = "//ul[@id='appmenu']//li[@id='more-apps']//preceding-sibling::li")
+    public List<WebElement> modules;
+
+    public List<String> getTextModules(){
+    List<String> moduleTexts = new ArrayList<>();
+
+    for (WebElement module : modules) {
+        BrowserUtils.hover(module);
+        // BrowserUtils.highlight(module); try and see the results this is good for us
+        BrowserUtils.sleep(1);
+        moduleTexts.add(module.getText());
+    }
+        return moduleTexts;
+}
+
+    public void clickModule(String moduleName) {
+        String locator = "//ul[@id='appmenu']//span[normalize-space(.)='"+moduleName+"']/..";
+        Driver.getDriver().findElement(By.xpath(locator)).click();
+
+    }
 
     @FindBy(xpath = "//div[contains(@class,'unified-search')]/a")
     public WebElement searchIcon;

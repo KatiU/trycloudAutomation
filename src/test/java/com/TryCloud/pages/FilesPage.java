@@ -7,6 +7,7 @@ import java.util.List;
 
 public class FilesPage extends BasePage{
 
+
     @FindBy(id = "headerSelection")
     public WebElement checkAllFilesCheckBox;
 
@@ -58,17 +59,37 @@ public class FilesPage extends BasePage{
     @FindBy(xpath = "//button[normalize-space()='Settings']")
     public WebElement settingsBtn;
 
+    //@FindBy(xpath = "//input[@class='checkbox']")
+    @FindBy(xpath = "//div[@id='app-settings-content']//input[@type='checkbox']//following-sibling::label")
+    public List<WebElement> allcheckboxs; //three settings checkboxes;
+
     @FindBy(id = "headerSelection")
     public WebElement selectAllFilesCheckBox;
 
+    @FindBy(xpath = "//input[@id='file_upload_start']")
+    public WebElement uploadFile;
+
+    @FindBy(xpath = "//span[@class='icon icon icon-delete']")
+    public WebElement deleteFolder;
+    //@FindBy(xpath = "//span[text()='Delete folder']")
+    @FindBy(xpath = "//span[@class='icon icon-more']")
+    public WebElement deleteFileBtn;
+
     @FindBy(xpath = "//input[contains(@id,'select-files')]")
     public List<WebElement> uploadedFiles;
+
 
     @FindBy(xpath = "//label[contains(@for,'Toggle')]")
     public List<WebElement> settingOptions;
 
     @FindBy(xpath = "//li[@id='quota']//p")
     public WebElement storageUsage;
+
+    @FindBy(xpath = "//*[@id=\"oc-dialog-fileexists-content\"]/table/tbody/tr/th[1]/label")
+    public WebElement checkboxInPopUp;
+
+    @FindBy(xpath = "//button[text()='Continue'] ")
+    public WebElement continuePopUp;
 
     @FindBy(xpath = "//h2[@class='app-sidebar-header__maintitle']")
     public WebElement sideBarTitle;
